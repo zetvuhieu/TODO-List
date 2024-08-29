@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { filterTask } from "../../../services/filter";
 
-// Định nghĩa các tên nhiệm vụ có thể có
-const TASK_NAMES = ["interview", "developer", "tester"];
+// Định nghĩa các tùy chọn trạng thái hoàn thành
+const COMPLETION_STATUS = ["All", "Completed", "Not Completed"];
 
 interface TaskFilterComponentProps {
   onFilterTasks: (tasks: any[]) => void; // Hàm callback nhận danh sách nhiệm vụ đã lọc
@@ -11,20 +11,29 @@ interface TaskFilterComponentProps {
 const TaskFilterComponent: React.FC<TaskFilterComponentProps> = ({
   onFilterTasks,
 }) => {
-  const [selectedTaskName, setSelectedTaskName] = useState<string>(
-    TASK_NAMES[0]
-  ); // Mặc định chọn tên nhiệm vụ đầu tiên
+  const [selectedCompletionStatus, setSelectedCompletionStatus] =
+    useState<string>("All"); // Mặc định chọn tất cả trạng thái hoàn thành
   const [error, setError] = useState<string>("");
 
   const handleFilter = async () => {
     try {
+      let isCompleted: boolean | undefined;
+
+      if (selectedCompletionStatus === "Completed") {
+        isCompleted = true;
+      } else if (selectedCompletionStatus === "Not Completed") {
+        isCompleted = false;
+      } else {
+        isCompleted = undefined; // Không lọc theo trạng thái hoàn thành
+      }
+
       const result = await filterTask({
         itemId: undefined,
-        taskName: selectedTaskName || "", // Đảm bảo taskName không bao giờ là null
+        taskName: "", // Bỏ qua taskName
         taskDescription: "",
         dueDate: "",
         createdOn: "",
-        isCompleted: undefined,
+        isCompleted: isCompleted,
         tags: "",
         completedOn: "",
       });
@@ -46,15 +55,15 @@ const TaskFilterComponent: React.FC<TaskFilterComponentProps> = ({
   return (
     <div className="border-2 p-4">
       <div>
-        <label htmlFor="taskName">Chọn tên nhiệm vụ:</label>
+        <label htmlFor="completionStatus">Chọn trạng thái hoàn thành:</label>
         <select
-          id="taskName"
-          value={selectedTaskName}
-          onChange={(e) => setSelectedTaskName(e.target.value)}
+          id="completionStatus"
+          value={selectedCompletionStatus}
+          onChange={(e) => setSelectedCompletionStatus(e.target.value)}
         >
-          {TASK_NAMES.map((taskName) => (
-            <option key={taskName} value={taskName}>
-              {taskName}
+          {COMPLETION_STATUS.map((status) => (
+            <option key={status} value={status}>
+              {status}
             </option>
           ))}
         </select>
