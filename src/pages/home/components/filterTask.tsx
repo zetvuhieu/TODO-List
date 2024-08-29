@@ -19,12 +19,12 @@ const TaskFilterComponent: React.FC<TaskFilterComponentProps> = ({
   const handleFilter = async () => {
     try {
       const result = await filterTask({
-        itemId: null,
+        itemId: undefined,
         taskName: selectedTaskName || "", // Đảm bảo taskName không bao giờ là null
         taskDescription: "",
         dueDate: "",
         createdOn: "",
-        isCompleted: null,
+        isCompleted: undefined,
         tags: "",
         completedOn: "",
       });
@@ -45,6 +45,7 @@ const TaskFilterComponent: React.FC<TaskFilterComponentProps> = ({
 
   return (
     <div>
+      <button onClick={handleFilter}>Lọc Nhiệm Vụ</button>{" "}
       <div>
         <label htmlFor="taskName">Chọn tên nhiệm vụ:</label>
         <select
@@ -59,8 +60,6 @@ const TaskFilterComponent: React.FC<TaskFilterComponentProps> = ({
           ))}
         </select>
       </div>
-      <button onClick={handleFilter}>Lọc Nhiệm Vụ</button>
-
       {error && <p className="text-red-500">{error}</p>}
     </div>
   );
