@@ -70,7 +70,7 @@ const Home: React.FC = () => {
     setFilteredTasks(filteredTasks);
   };
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 bg-slate-400">
       <TaskPost onPostSuccess={handlePostSuccess} />
       <TaskFilterComponent onFilterTasks={handleFilterTasks} />
       <TaskList

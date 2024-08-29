@@ -44,8 +44,7 @@ const TaskFilterComponent: React.FC<TaskFilterComponentProps> = ({
   };
 
   return (
-    <div>
-      <button onClick={handleFilter}>Lọc Nhiệm Vụ</button>{" "}
+    <div className="border-2 p-4">
       <div>
         <label htmlFor="taskName">Chọn tên nhiệm vụ:</label>
         <select
@@ -60,6 +59,12 @@ const TaskFilterComponent: React.FC<TaskFilterComponentProps> = ({
           ))}
         </select>
       </div>
+      <button
+        className="bg-blue-600 rounded-lg p-2 text-white"
+        onClick={handleFilter}
+      >
+        Lọc Nhiệm Vụ
+      </button>{" "}
       {error && <p className="text-red-500">{error}</p>}
     </div>
   );
