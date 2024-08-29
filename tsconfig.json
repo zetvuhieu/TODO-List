@@ -1,27 +1,19 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": [
+      "ES2020",
+      "DOM"
+    ],
+    "module": "ESNext",
     "moduleResolution": "node",
-    "esModuleInterop": true,
+    "jsx": "react-jsx",
     "strict": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
-    "types": [
-      "node"
-    ] // Thêm dòng này để khai báo kiểu cho Node.js
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
+    "src"
   ]
 }
