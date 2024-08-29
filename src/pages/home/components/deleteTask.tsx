@@ -19,7 +19,10 @@ const DeleteTask: React.FC<DeleteTaskProps> = ({ taskId, onDeleteSuccess }) => {
 
   return (
     <div>
-      <button onClick={handleDelete} className="btn btn-danger text-center">
+      <button
+        onClick={handleDelete}
+        className="btn btn-danger text-center bg-blue-500 p-2 rounded-lg text-white"
+      >
         Delete Task
       </button>
     </div>

@@ -114,7 +114,9 @@ const CreateTask: React.FC<CreateTaskProps> = ({ onPostSuccess }) => {
             onChange={(e) => setTags(e.target.value)}
           />
         </div>
-        <button type="submit">Create Task</button>
+        <button className="bg-blue-500 p-2 rounded-lg text-white" type="submit">
+          Create Task
+        </button>
       </form>
     </div>
   );

@@ -127,7 +127,9 @@ const UpdateTask: React.FC<UpdateTaskProps> = ({
             onChange={(e) => setTags(e.target.value)}
           />
         </div>
-        <button type="submit">Update Task</button>
+        <button className="bg-blue-500 p-2 rounded-lg text-white" type="submit">
+          Update Task
+        </button>
       </form>
     </div>
   );
